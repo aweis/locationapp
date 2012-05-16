@@ -1,0 +1,31 @@
+<h1>Listing attractions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Street</th>
+    <th>School</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @attractions.each do |attraction| %>
+  <tr>
+    <td><%= attraction.name %></td>
+    <td><%= attraction.street %></td>
+    <td><%= attraction.school_id %></td>
+    <td><%= attraction.lat %></td>
+    <td><%= attraction.lon %></td>
+    <td><%= link_to 'Show', attraction %></td>
+    <td><%= link_to 'Edit', edit_attraction_path(attraction) %></td>
+    <td><%= link_to 'Destroy', attraction, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Attraction', new_attraction_path %>
