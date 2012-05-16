@@ -26,6 +26,10 @@ class SchoolsController < ApplicationController
   def new
     @school = School.new
 
+    3.times do
+      @school.attractions.build
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @school }

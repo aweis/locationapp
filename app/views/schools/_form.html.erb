@@ -1,37 +1,39 @@
-<%= form_for(@school) do |f| %>
-  <% if @school.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+<!-- NOTE THAT WE ARE USING BOTH SIMPLE_FORM AND NESTED_FORM (simple_nested_form_for) -->
+<!-- If you are not using both, adjust the simple_nested_form_for call accordingly -->
 
-      <ul>
-      <% @school.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
-  </div>
-  <div class="field">
-    <%= f.label :lon %><br />
-    <%= f.text_field :lon %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_nested_form_for @school, :html => { :class => 'form-horizontal' } do |school_form| %>
+<div class="row">
+	<div class="span6">
+		<fieldset>
+	    <legend><%= controller.action_name.capitalize %> Town</legend>
+				
+				<!-- Add partial for school form details here -->
+				
+		    <%= render :partial => 'school_fields', :locals => { :f => school_form } %>
+	  </fieldset>
+	</div>
+	<div class="span6">
+		<legend>Add some attractions for this school</legend>
+		<div id="school_attractions">
+			
+			<%= school_form.simple_fields_for :attractions do |attraction_form| %>
+				
+				<!-- Add partial for attractions form here -->
+				
+			  <%= render :partial => "attraction_fields", :locals => { :f => attraction_form } %>
+			<% end %> 
+			<p>
+				<br />
+				<!-- if you are using bootstrap, choose the first option... -->
+				<%= school_form.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Attraction"), :attractions, :class => 'btn btn-mini btn-primary') %>
+				<%# school_form.link_to_add("Add Attraction", :attractions) %>
+			</p>
+			
+		</div> 
+	</div>
+</div>
+<div class="form-actions">
+  <%= school_form.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', schools_path, :class => 'btn' %>
+</div>
 <% end %>
