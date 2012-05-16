@@ -1,5 +1,5 @@
 class School < ActiveRecord::Base
-  attr_accessible :description, :lat, :lon, :name, :state
+  attr_accessible :description, :lat, :lon, :name, :state, :attractions_attributes
 
   has_many :attractions
 

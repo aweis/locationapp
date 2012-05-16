@@ -1,11 +1,13 @@
 <div class="fields">
 	<div class="min_attraction">
 		<!-- x icon (if bootstrap)  or just link to remove -->
-		<%# f.link_to_remove(raw("<i class='icon-remove'></i>")) %>
-		<%= f.link_to_remove "Remove" %>
+		<%= f.link_to_remove(raw("<i class='icon-remove'></i>")) %>
+		<%#= f.link_to_remove "Remove" %>
 		
 		
-		<!-- use simple_form to add controls for name, street and town_id -->
-		
+		<!-- use simple_form to add controls for name, street and school_id -->
+	  <%= f.input :name %>
+    <%= f.input :street %>
+
 	</div>
 </div>

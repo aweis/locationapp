@@ -24,6 +24,15 @@
   <b>Lon:</b>
   <%= @school.lon %>
 </p>
+<p>
+  <b>Attractions in <%= @school.name %>:</b>
+  <ol>
+    <% @school.attractions.each do |attraction| %>
+      <li><%= attraction.name %> - <%= attraction.street %></li>
+    <% end %>
+  </ol>
+</p>
+
 
 
 <%= link_to 'Edit', edit_school_path(@school) %> |
